@@ -206,7 +206,7 @@ def send_email(sign_list):
     msg = MIMEText(body, 'html', 'utf-8')
     msg['subject'] = subject
     smtp = smtplib.SMTP()
-    smtp.connect(HOST)
+    smtp.connect(HOST, 465)
     smtp.ehlo()
     smtp.starttls()
     smtp.login(FROM, AUTH)
