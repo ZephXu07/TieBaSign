@@ -182,7 +182,7 @@ def send_email(sign_list):
     TO = ENV['TO'].split('#')
     AUTH = ENV['AUTH']
     length = len(sign_list)
-    subject = f"{time.strftime('%Y-%m-%d', time.localtime())} 打卡时间到！！！！！！！！已经签到{length}个贴吧"
+    subject = f"{time.strftime('%Y-%m-%d', time.localtime())} 上下班打卡时间到！！！！！！！！！！！！！！！！！！！！！！！！！！已经签到{length}个贴吧"
     body = """
     <style>
     .child {
