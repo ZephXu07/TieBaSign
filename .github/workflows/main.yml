@@ -1,6 +1,7 @@
 name: 'Baidu Tieba Auto Sign'
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
