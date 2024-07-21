@@ -12,15 +12,15 @@ set "tempfile=tempfile.tmp"
 
 :: 删除最后一行并将内容写入临时文件
 (for /f "delims=" %%A in (%readme%) do (
-    set "lastline=%%A"
-    echo !lastline!
+    set "line=%%A"
+    echo !line!
 )) > "%tempfile%"
 
 :: 删除临时文件的最后一行，并重写 README.md 文件
 (for /f "delims=" %%A in (%tempfile%) do (
+    set "line=%%A"
+    if defined lastline (echo !lastline!)
     set "lastline=%%A"
-    if defined content echo !content!
-    set "content=%%A"
 )) > "%readme%"
 
 :: 添加新的内容
