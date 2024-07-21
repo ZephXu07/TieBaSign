@@ -6,28 +6,11 @@ setlocal enabledelayedexpansion
 for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value ^| findstr LocalDateTime') do set datetime=%%I
 set "date=%datetime:~0,4%/%datetime:~4,2%/%datetime:~6,2%"
 
-:: 定义 README.md 文件路径
-set "readme=README.md"
-set "tempfile=tempfile.tmp"
+:: 定义要追加内容的文件路径
+set "logfile=自动提交log.txt"
 
-:: 删除最后一行并将内容写入临时文件
-(for /f "delims=" %%A in (%readme%) do (
-    set "line=%%A"
-    echo !line!
-)) > "%tempfile%"
-
-:: 删除临时文件的最后一行，并重写 README.md 文件
-(for /f "delims=" %%A in (%tempfile%) do (
-    set "line=%%A"
-    if defined lastline (echo !lastline!)
-    set "lastline=%%A"
-)) > "%readme%"
-
-:: 添加新的内容
-echo 5. commit %date% >> "%readme%"
-
-:: 删除临时文件
-del "%tempfile%"
+:: 追加日期到文件
+echo %date% >> "%logfile%"
 
 :: Git 自动提交和推送
 echo 添加所有修改的文件到暂存区...
